@@ -2,6 +2,7 @@ require_relative 'lib/ssm_params_loader/version'
 
 Gem::Specification.new do |spec|
   spec.name = "ssm_params_loader"
+  spec.full_name = "ssm_params_loader"
   spec.version = SsmParamsLoader::VERSION
   spec.authors = ["Oleksii Samoliuk"]
   spec.email = ["work@yousysadmin.com"]
