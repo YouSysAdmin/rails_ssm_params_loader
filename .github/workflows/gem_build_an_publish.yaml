@@ -1,0 +1,19 @@
+---
+name: Build and Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: Publish gem
+        uses: yousysadmin/action-publish-gem@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          api_key: ${{secrets.API_KEY}}

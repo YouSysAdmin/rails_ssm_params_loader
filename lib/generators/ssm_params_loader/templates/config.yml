@@ -1,0 +1,9 @@
+# Path to a SSM parameters
+ssm_store_path: '' # Ex: /MyApp/production
+
+# Additional static secrets list
+# If a name is equal to a name obtained from the SSM, the value from the SSM
+# is overwritten by a value from this list.
+additional_vars: [ ]
+#  - name: secrets_attachment_scan_host
+#    value: zzzz
