@@ -9,13 +9,22 @@ Load AWS SSM Parameters as Environment variables during a Rails application init
 
 ```
 # AWS SSM:
-/MyApp/production/My-Secrets = 123
+/shared/Secret = 1
+/shared/Token = 1
+
+/MyApp/production/App-Secrets = 2
+/MyApp/production/Token = 2
+
 
 # config/ssm_params_loader.yml:
-store_path: '/MyApp/production'
+store_path:
+  - '/shared'
+  - '/MyApp/production'
 
 # Result:
-SSM_MY_SECRET=123
+SSM_SECRET=1
+SSM_APP_SECRET=2
+TOKEN=2 <-- the param `token` from the `/shared` was rewritten by value from the `token` param in `/MyApp/production`
 
 To all environment variables, automatically, adding prefix SSM_
 ```
@@ -35,10 +44,15 @@ bin/rails generate ssm_params_loader:install
 File path: `config/ssm_params_loader.yml`
 ```yaml
 # Path to a SSM parameters
-store_path: '/my_app/staging'
+# The lower the position in the list, the higher the priority
+# of two parameters with the same name, the one received last will be used
+ssm_store_paths:
+  - /Shared
+  - /MyApp/production
 
 # Additional static secrets list
-# If a name is equal to a name obtained from the SSM, the value from the SSM is overwritten by a value from this list.
+# If a name is equal to a name obtained from the SSM, the value from the SSM
+# is overwritten by a value from this list.
 additional:
   - name: my_secreting_secret
     value: value_for_my_secreting_secret

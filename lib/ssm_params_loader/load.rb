@@ -12,11 +12,11 @@ module SsmParamsLoader
 
     config = YAML.safe_load_file(config_file).with_indifferent_access
 
-    ssm_path = config[:ssm_store_path] || nil
+    ssm_paths = config[:ssm_store_paths] || nil
     additional = config[:additional_vars] || nil
 
     # Get secrets and set environment variables
-    environments = load_secrets(ssm_path, additional)
+    environments = load_secrets(ssm_paths, additional)
     environments.each { |secret| ENV["SSM_#{secret[:name].gsub('-', '_').upcase}"] = secret[:value] }
   end
 
@@ -28,11 +28,14 @@ module SsmParamsLoader
   end
 
   # Get a hash array of secrets
-  def self.load_secrets(ssm_path, additional)
+  def self.load_secrets(ssm_paths, additional)
     secrets = []
 
-    unless ssm_path.nil?
-      secrets += from_ssm(ssm_path)
+    unless ssm_paths.nil?
+      ssm_paths.each do |path|
+        puts path
+        secrets += from_ssm(path)
+      end
     end
 
     unless additional.nil?

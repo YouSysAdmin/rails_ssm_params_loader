@@ -1,5 +1,9 @@
 # Path to a SSM parameters
-ssm_store_path: '' # Ex: /MyApp/production
+# The lower the position in the list, the higher the priority
+# of two parameters with the same name, the one received last will be used
+ssm_store_paths: [ ]
+#  - /Shared/production
+#  - /MyApp/production
 
 # Additional static secrets list
 # If a name is equal to a name obtained from the SSM, the value from the SSM
