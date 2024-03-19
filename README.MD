@@ -5,6 +5,8 @@
 
 Load AWS SSM Parameters as Environment variables during a Rails application initializing.
 
+**IMPORTANT:** You should be using an Instance IAM role for access to the AWS SSM
+
 ```
 # AWS SSM:
 /MyApp/production/My-Secrets = 123
