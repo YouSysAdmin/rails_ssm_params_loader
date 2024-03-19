@@ -1,4 +1,7 @@
 # Secrets
+![Static Badge](https://img.shields.io/badge/Current%20version-0.0.1-green)
+[![Static Badge](https://img.shields.io/badge/Github-Registry-green)](https://github.com/YouSysAdmin/rails_ssm_params_loader/pkgs/rubygems/ssm_params_loader)
+[![Static Badge](https://img.shields.io/badge/RubyGems-Registry-green)](https://rubygems.org/gems/ssm_params_loader)
 
 Load AWS SSM Parameters as Environment variables during a Rails application initializing.
 
