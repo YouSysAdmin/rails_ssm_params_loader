@@ -33,7 +33,6 @@ module SsmParamsLoader
 
     unless ssm_paths.nil?
       ssm_paths.each do |path|
-        puts path
         secrets += from_ssm(path)
       end
     end
